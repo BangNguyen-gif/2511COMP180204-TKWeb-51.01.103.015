@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Hồ cá vui nhộn</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .aquarium {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url("img/hoca1.jpg");
+            background-size: cover;
+            background-position: center;
+            transition: background-image 0.8s ease;
+        }
+
+        img {
+            position: absolute;
+        }
+
+        .shark {
+            width: 200px;
+            top: 180px;
+            left: -250px;
+            animation: sharkMove 10s linear infinite;
+        }
+
+        .diver {
+            width: 120px;
+            animation: diverMove 12s linear infinite;
+        }
+
+        #diver1 { top: 350px; left: -150px; animation-delay: 0s; }
+        #diver2 { top: 420px; left: -300px; animation-delay: 3s; }
+        #diver3 { top: 280px; left: -450px; animation-delay: 6s; }
+
+        .turtle {
+            width: 100px;
+            animation: turtleMove 18s linear infinite;
+        }
+
+        #turtle1 { top: 450px; left: -100px; animation-delay: 0s; }
+        #turtle2 { top: 520px; left: -250px; animation-delay: 4s; }
+        #turtle3 { top: 380px; left: -400px; animation-delay: 8s; }
+
+        .goldfish {
+            width: 150px;
+            top: 250px;
+            left: -200px;
+            animation: goldfishMove 14s linear infinite;
+        }
+
+        .bubble {
+            width: 40px;
+            position: absolute;
+            bottom: -50px;
+            animation: bubbleUp 6s linear infinite;
+        }
+
+        #bubble1 { left: 20%; animation-delay: 0s; }
+        #bubble2 { left: 50%; animation-delay: 2s; }
+        #bubble3 { left: 80%; animation-delay: 4s; }
+
+        @keyframes sharkMove {
+            0% { left: -250px; }
+            100% { left: 100%; }
+        }
+
+        @keyframes diverMove {
+            0% { left: -150px; transform: scaleX(1); }
+            50% { left: 100%; transform: scaleX(1); }
+            50.01% { transform: scaleX(-1); }
+            100% { left: -150px; transform: scaleX(-1); }
+        }
+
+        @keyframes turtleMove {
+            0% { left: -150px; }
+            100% { left: 100%; }
+        }
+
+        @keyframes goldfishMove {
+            0% { left: -200px; }
+            100% { left: 100%; }
+        }
+
+        @keyframes bubbleUp {
+            0% { bottom: -50px; opacity: 0; transform: scale(0.5); }
+            30% { opacity: 1; transform: scale(1); }
+            100% { bottom: 100vh; opacity: 0; transform: scale(1.2); }
+        }
+
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        button {
+            margin: 5px;
+            padding: 8px 12px;
+            background-color: red;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: deepskyblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="aquarium" id="aquarium">
+        <img src="img/shark.png" class="shark">
+        <img src="img/diver1.png" class="diver" id="diver1">
+        <img src="img/diver2.png" class="diver" id="diver2">
+        <img src="img/diver3.png" class="diver" id="diver3">
+        <img src="img/turtle.png" class="turtle" id="turtle1">
+        <img src="img/turtle.png" class="turtle" id="turtle2">
+        <img src="img/turtle.png" class="turtle" id="turtle3">
+        <img src="img/goldFishSchool.png" class="goldfish">
+        <img src="img/goldFishSchool.png" class="goldfish">
+        <img src="img/bong.png" class="bubble" id="bubble1">
+        <img src="img/bong.png" class="bubble" id="bubble2">
+        <img src="img/bong.png" class="bubble" id="bubble3">
+
+        <div class="controls">
+            <button onclick="changeBackground()">Đổi cảnh nền</button>
+            
+        </div>
+    </div>
+
+    <script>
+        let bgIndex = 0;
+        const backgrounds = ["img/hoca.webp", "img/hoca1.jpg"];
+        function changeBackground() {
+            bgIndex = 1 - bgIndex;
+            document.getElementById("aquarium").style.backgroundImage = "url('" + backgrounds[bgIndex] + "')";
+        }
+        let isPlaying = false;
+        function toggleMusic() {
+            let audio = document.getElementById("music");
+            if (isPlaying) {
+                audio.pause();
+            } else {
+                audio.play();
+            }
+            isPlaying = !isPlaying;
+        }
+    </script>
+</body>
+</html>
