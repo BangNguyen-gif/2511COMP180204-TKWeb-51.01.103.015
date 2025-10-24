@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Lễ hội Halloween</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("img/nenhlw.webp");
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: "Poppins", sans-serif;
+            color: white;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            z-index: 20;
+        }
+        header .container { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+        header h1 { color: orange; margin:0; font-weight:bold; text-shadow:0 0 12px orange; font-size:1.25rem; }
+        header nav a { color:#fff; text-decoration:none; margin-left:12px; font-weight:600; }
+        .hero { padding:120px 20px 80px; text-align:center; background:rgba(0,0,0,0.25); }
+        .hero h2 { font-size:2.8rem; color:orange; text-shadow:0 0 20px orange; margin-bottom:10px; }
+        .btn-orange { background:orange; color:#000; border:none; padding:10px 22px; border-radius:22px; font-weight:700; }
+        section { padding:80px 0; background:rgba(0,0,0,0.35); }
+        .section-title { text-align:center; color:orange; font-size:1.8rem; margin-bottom:28px; }
+        .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:16px; padding:0 20px; }
+        .gallery img { width:100%; border-radius:10px; display:block; }
+        footer { text-align:center; padding:20px; background:rgba(0,0,0,0.6); margin-top:20px; color:#ddd; }
+        .shop-panel { max-width:1100px; margin:0 auto; padding:18px; background:rgba(255,255,255,0.04); border-radius:12px; border:1px solid rgba(255,255,255,0.03); }
+        .list-group-item { background:transparent; border:1px solid rgba(255,255,255,0.04); border-radius:8px; margin-bottom:10px; }
+        .item-thumb { width:96px; height:96px; object-fit:contain; border-radius:8px; }
+        .item-title { color:#fff; font-weight:700; font-size:1.05rem; }
+        .item-price { color:orange; font-weight:800; }
+        .detail-box { background:rgba(255,255,255,0.03); padding:12px; border-radius:8px; margin-top:8px; color:#eee; }
+        .toggle-btn { cursor:pointer; color:#ddd; text-decoration:underline; font-size:0.92rem; }
+        .register { text-align:center; padding:40px; background:rgba(0,0,0,0.6); margin-top:20px; }
+        .register input { margin:10px; padding:10px; border-radius:6px; border:none; width:250px; }
+        .register button { background-color:orange; border:none; padding:10px 20px; color:white; border-radius:6px; font-weight:600; }
+        .register button:hover { background-color:#ff6600; }
+        @media (max-width:767px) { .hero { padding-top:140px; } .item-thumb { width:72px; height:72px; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Halloween Party</h1>
+            <nav>
+                <a href="#home">Trang chủ</a>
+                <a href="#intro">Giới thiệu</a>
+                <a href="#shop">Gian hàng</a>
+                <a href="#gallery">Bộ sưu tập</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <h2>Chào mừng đến với Đêm Halloween 2025</h2>
+        <p style="max-width:760px;margin:0 auto 18px;">Tham gia lễ hội hóa trang, ánh sáng và âm nhạc huyền bí — gian hàng, trò chơi và nhiều điều bất ngờ chờ bạn.</p>
+        <button class="btn-orange" id="exploreBtn">Khám phá ngay</button>
+    </section>
+
+    <section id="intro">
+        <div class="container">
+            <h3 class="section-title">Giới thiệu</h3>
+            <p style="text-align:center;max-width:820px;margin:0 auto;">Halloween là lễ hội truyền thống diễn ra vào ngày 31 tháng 10 hằng năm, có nguồn gốc từ các vùng Celtic cổ xưa ở châu Âu. Ban đầu, đây là dịp người dân tổ chức lễ Samhain — lễ đánh dấu sự kết thúc mùa màng và bắt đầu mùa đông, thời điểm được tin rằng ranh giới giữa thế giới người sống và linh hồn người chết trở nên mờ nhạt.</p>
+            <p style="text-align:center;max-width:820px;margin:0 auto;">Halloween không chỉ là dịp vui chơi mà còn mang ý nghĩa nhắc nhở con người trân trọng sự sống, vượt qua nỗi sợ hãi và cùng nhau kết nối trong tinh thần đoàn kết và sáng tạo.</p>
+        </div>
+    </section>
+
+    <section id="shop">
+        <div class="container">
+            <h3 class="section-title">Gian hàng Halloween</h3>
+            <div class="shop-panel">
+                <ul id="shopList" class="list-group list-unstyled mb-3"></ul>
+                <div class="d-flex justify-content-end">
+                    <button id="addSample" class="btn btn-sm btn-outline-light me-2">Thêm mẫu</button>
+                    <button id="clearList" class="btn btn-sm btn-outline-danger">Xóa danh sách</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <div class="container">
+            <h3 class="section-title">Bộ sưu tập</h3>
+            <div class="gallery">
+                <img src="img/bat.png">
+                <img src="img/linhhon.ico">
+                <img src="img/meoden.png">
+                <img src="img/nen.png">
+                <img src="img/laudai.png">
+                <img src="img/xacuop.png">
+                <img src="img/dauzombie.ico">
+                <img src="img/daubingo.png">
+                <img src="img/bingo.ico">
+                <img src="img/bachtuoc.ico">
+            </div>
+        </div>
+    </section>
+
+    <div class="register">
+        <h3>Đăng ký tham gia sự kiện</h3>
+        <input type="text" id="name" placeholder="Họ và tên">
+        <input type="email" id="email" placeholder="Email">
+        <button id="registerBtn">Đăng ký</button>
+    </div>
+
+    <footer>
+        © 2025 Halloween — Hãy tham gia cùng chúng tôi
+    </footer>
+
+    <div class="floating-bubbles" id="bubbles"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script>
+        const shopItems = [
+            {id:"item1",name:"Bí ngô",img:"img/bingo.ico",price:"50.000 đ",details:["Kích thước: 25cm","Chất liệu: Nhựa PVC","Phù hợp trang trí sân khấu và bàn tiệc","Bảo hành: 6 tháng"]},
+            {id:"item2",name:"Đầu bí ngô",img:"img/daubingo.png",price:"70.000 đ",details:["Kích thước: 30cm","Chất liệu: Foam cao cấp","Dễ lắp đặt, nhẹ","Phù hợp cosplay và trang trí"]},
+            {id:"item3",name:"Xác ướp",img:"img/xacuop.png",price:"90.000 đ",details:["Kèm vải bọc tạo hiệu ứng thực tế","Kích thước: 1.2m","Dùng cho trang trí gian hàng và sân khấu"]},
+            {id:"item4",name:"Đầu Zombie",img:"img/dauzombie.ico",price:"80.000 đ",details:["Vật liệu: Nhựa tổng hợp","Chi tiết mắt, răng sắc nét","Dễ vệ sinh"]},
+            {id:"item5",name:"Bạch tuộc",img:"img/bachtuoc.ico",price:"60.000 đ",details:["Trang trí treo trần","Chất liệu: Vải mềm","Hiệu ứng ánh sáng (tùy chọn)"]}
+        ];
+        function renderShopList(list){
+            const $list=$("#shopList");
+            $list.empty();
+            list.forEach(item=>{
+                const $li=$(`
+                    <li class="list-group-item d-flex align-items-start gap-3" id="${item.id}">
+                        <img src="${item.img}" class="item-thumb" alt="${item.name}">
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div>
+                                    <div class="item-title">${item.name}</div>
+                                    <div class="text-muted small">Mã: ${item.id}</div>
+                                </div>
+                                <div class="text-end">
+                                    <div class="item-price">${item.price}</div>
+                                    <div class="small text-muted">Số lượng có sẵn: <span class="stock">10</span></div>
+                                </div>
+                            </div>
+                            <div class="detail-box collapse" id="detail-${item.id}">
+                                <ul class="mb-0"></ul>
+                                <div class="mt-2 d-flex gap-2">
+                                    <button class="btn btn-sm btn-outline-light add-to-cart">Thêm vào giỏ</button>
+                                    <button class="btn btn-sm btn-outline-secondary view-more">Xem thêm</button>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <span class="toggle-btn" data-target="#detail-${item.id}">Xem chi tiết ▾</span>
+                            </div>
+                        </div>
+                    </li>
+                `);
+                item.details.forEach(d=>{
+                    $li.find(`#detail-${item.id} ul`).append(`<li>${d}</li>`);
+                });
+                $list.append($li);
+            });
+        }
+        $(function(){
+            renderShopList(shopItems);
+            $("#shopList").on("click",".toggle-btn",function(){
+                const target=$(this).data("target");
+                $(target).collapse('toggle');
+                const opened=$(target).hasClass('show');
+                $(this).text(opened?'Xem chi tiết ▾':'Thu gọn ▴');
+            });
+            $.fn.collapse=function(action){
+                if(action==='toggle'){
+                    this.each(function(){
+                        const $el=$(this);
+                        if($el.hasClass('show')){
+                            $el.removeClass('show').slideUp(180);
+                        }else{
+                            $el.addClass('show').slideDown(220);
+                        }
+                    });
+                }
+                return this;
+            };
+            $("#shopList").on("click",".add-to-cart",function(){
+                const $li=$(this).closest("li");
+                const $stock=$li.find(".stock");
+                let stockVal=parseInt($stock.text(),10);
+                if(stockVal>0){
+                    stockVal--;
+                    $stock.text(stockVal);
+                    $(this).text("Đã thêm").prop("disabled",true);
+                }else{alert("Hết hàng");}
+            });
+            $("#shopList").on("click",".view-more",function(){
+                const $li=$(this).closest("li");
+                const name=$li.find(".item-title").text();
+                const detailsHtml=$li.find(`#detail-${$li.attr('id')} ul`).html();
+                const detailWindow=window.open("","_blank","width=480,height=580");
+                detailWindow.document.write("<html><head><title>"+name+"</title><style>body{background:#111;color:#fff;font-family:Arial;padding:20px}ul{line-height:1.6}</style></head><body>");
+                detailWindow.document.write("<h2>"+name+"</h2>");
+                detailWindow.document.write("<p>Giá: "+$li.find(".item-price").text()+"</p>");
+                detailWindow.document.write("<div><ul>"+detailsHtml+"</ul></div>");
+                detailWindow.document.write("</body></html>");
+                detailWindow.document.close();
+            });
+            $("#addSample").on("click",function(){
+                const newItem={id:"item"+(shopItems.length+1),name:"Sản phẩm mới",img:"img/bingo.ico",price:"55.000 đ",details:["Mô tả nhanh","Tùy chọn màu sắc","Không kèm bảo hành"]};
+                shopItems.push(newItem);
+                renderShopList(shopItems);
+            });
+            $("#clearList").on("click",function(){
+                shopItems.length=0;
+                renderShopList(shopItems);
+            });
+            $("#exploreBtn").on("click",function(){
+                document.getElementById("intro").scrollIntoView({behavior:"smooth"});
+            });
+            $("#registerBtn").click(function(){
+                let name=$("#name").val();
+                let email=$("#email").val();
+                if(name&&email){alert("Cảm ơn "+name+"! Thông tin sự kiện sẽ được gửi đến "+email);}
+                else{alert("Vui lòng nhập đầy đủ họ tên và email!");}
+            });
+        });
+        (function createBubbles(){
+            const container=document.getElementById("bubbles");
+            for(let i=0;i<20;i++){
+                const b=document.createElement("div");
+                b.className="bubble";
+                b.style.left=Math.random()*100+"%";
+                const s=15+Math.random()*35;
+                b.style.width=s+"px";
+                b.style.height=s+"px";
+                b.style.animationDuration=(6+Math.random()*6)+"s";
+                b.style.animationDelay=Math.random()*4+"s";
+                container.appendChild(b);
+            }
+        })();
+    </script>
+</body>
+</html>
